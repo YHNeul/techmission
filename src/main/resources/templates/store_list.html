@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <title>매장 목록</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>매장 목록</h2>
+<table border="1">
+    <tr>
+        <th>매장명</th>
+        <th>위치</th>
+        <th>설명</th>
+        <th>자세히 보기</th>
+    </tr>
+    <tr th:each="store : ${stores}">
+        <td th:text="${store.name}"></td>
+        <td th:text="${store.location}"></td>
+        <td th:text="${store.description}"></td>
+        <td><a th:href="@{/stores/{id}(id=${store.id})}">보기</a></td>
+    </tr>
+</table>
+</body>
+</html>
