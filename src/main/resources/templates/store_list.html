@@ -6,19 +6,31 @@
 </head>
 <body>
 <h2>매장 목록</h2>
-<table border="1">
-    <tr>
-        <th>매장명</th>
-        <th>위치</th>
-        <th>설명</th>
-        <th>자세히 보기</th>
-    </tr>
-    <tr th:each="store : ${stores}">
-        <td th:text="${store.name}"></td>
-        <td th:text="${store.location}"></td>
-        <td th:text="${store.description}"></td>
-        <td><a th:href="@{/stores/{id}(id=${store.id})}">보기</a></td>
-    </tr>
-</table>
+
+<!-- ✅ 로그인한 사용자만 매장 목록 표시 -->
+<th:block th:if="${role != null}">
+    <table border="1">
+        <tr>
+            <th>매장명</th>
+            <th>위치</th>
+            <th>설명</th>
+            <th>자세히 보기</th>
+        </tr>
+        <tr th:each="store : ${stores}">
+            <td th:text="${store.name}"></td>
+            <td th:text="${store.location}"></td>
+            <td th:text="${store.description}"></td>
+            <td><a th:href="@{/stores/{id}(id=${store.id}, username=${username}, role=${role})}">보기</a></td>
+        </tr>
+    </table>
+</th:block>
+
+<!-- ✅ 파트너(OWNER)만 '매장 등록' 버튼 표시 -->
+<th:block th:if="${role == 'OWNER'}">
+    <a th:href="@{/stores/register(username=${username}, role=${role})}">
+        <button>매장 등록</button>
+    </a>
+</th:block>
+
 </body>
 </html>

@@ -26,6 +26,14 @@
                     <button type="submit">로그아웃</button>
                 </form>
             </li>
+
+            <!-- ✅ 매장 목록 페이지로 이동 시 URL에 username과 role 포함 -->
+            <li><a th:href="@{/stores(username=${username}, role=${role})}">매장 목록</a></li>
+
+            <!-- ✅ OWNER만 매장 등록 가능 -->
+            <th:block th:if="${role == 'OWNER'}">
+                <li><a th:href="@{/stores/register(username=${username}, role=${role})}">매장 등록</a></li>
+            </th:block>
         </th:block>
     </ul>
 </nav>

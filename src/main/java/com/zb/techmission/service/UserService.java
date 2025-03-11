@@ -23,4 +23,10 @@ public class UserService {
         StoreUser newUser = new StoreUser(username, encodedPassword, name, role);
         userRepository.save(newUser);
     }
+
+    // ✅ username으로 유저 정보 가져오기
+    public StoreUser getUserByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다: " + username));
+    }
 }

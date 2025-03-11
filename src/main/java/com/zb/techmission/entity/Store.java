@@ -3,9 +3,8 @@ package com.zb.techmission.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
-@NoArgsConstructor
 @Entity
 @Table(name = "stores")
 public class Store {
@@ -14,14 +13,24 @@ public class Store {
     private Long id;
 
     @Column(nullable = false)
-    private String name; // 매장 이름
+    private String name;
 
     @Column(nullable = false)
-    private String location; // 매장 위치
+    private String location;
 
     @Column(length = 500)
-    private String description; // 매장 설명
+    private String description;
 
-    @Column(nullable = false)
-    private String owner; // 점주 ID
+    // ✅ StoreUser 객체로 변경 (점주 정보 저장)
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private StoreUser owner;
+
+    public void setOwner(StoreUser owner) {
+        this.owner = owner;
+    }
+
+    public StoreUser getOwner() {
+        return owner;
+    }
 }

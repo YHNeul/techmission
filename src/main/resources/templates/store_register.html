@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <title>매장 등록</title>
+</head>
+<body>
+
+<h2>매장 등록</h2>
+
+<form action="/stores/register" method="post">
+    <label for="name">매장명:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+
+    <label for="location">위치:</label>
+    <input type="text" id="location" name="location" required>
+    <br>
+
+    <label for="description">설명:</label>
+    <textarea id="description" name="description"></textarea>
+    <br>
+
+    <button type="submit">등록</button>
+</form>
+
+</body>
+</html>
