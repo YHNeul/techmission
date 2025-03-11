@@ -1,5 +1,6 @@
 package com.zb.techmission.config;
 
+import com.zb.techmission.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
