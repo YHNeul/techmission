@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+
     private final UserRepository userRepository;
 
     public CustomUserDetailsService(UserRepository userRepository) {
@@ -23,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return User.builder()
                 .username(user.getUsername())
-                .password(user.getPassword()) // ✅ 암호화된 비밀번호 그대로 사용
+                .password(user.getPassword()) // ✅ 반드시 암호화된 패스워드 저장
                 .roles(user.getRole().name()) // ✅ Role Enum을 String으로 변환
                 .build();
     }

@@ -12,8 +12,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.io.IOException;
 import java.util.List;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -46,8 +53,8 @@ public class SecurityConfig {
                 .formLogin(login -> login
                         .loginPage("/users/login")
                         .loginProcessingUrl("/users/login")
-                        .defaultSuccessUrl("/", true)
-                        .failureHandler(new UserAuthenticationFailureHandler()) // 로그인 실패 핸들러 적용
+                        .successHandler(customAuthenticationSuccessHandler()) // 로그인 성공 핸들러 적용
+                        .failureUrl("/users/login?error=true") // 로그인 실패 시
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -59,5 +66,19 @@ public class SecurityConfig {
                 );
 
         return http.build();
+    }
+
+    // ✅ 로그인 성공 시 username과 role을 포함한 URL로 리디렉트하는 핸들러
+    @Bean
+    public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+        return (request, response, authentication) -> {
+            String username = authentication.getName();
+            String role = authentication.getAuthorities().stream()
+                    .findFirst()
+                    .map(Object::toString)
+                    .orElse("USER");
+
+            response.sendRedirect("/?username=" + username + "&role=" + role);
+        };
     }
 }

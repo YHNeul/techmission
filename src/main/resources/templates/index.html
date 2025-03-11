@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ko">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>메인 페이지</title>
 </head>
 <body>
 
 <h2>🔍 디버깅 정보</h2>
-<p>현재 사용자: <span sec:authentication="name">익명 사용자</span></p>
-<p>현재 권한: <span sec:authentication="authorities"></span></p>
+<p>현재 사용자: <span th:text="${username != null ? username : '익명 사용자'}"></span></p>
+<p>현재 역할: <span th:text="${role != null ? role : '없음'}"></span></p>
 
 <nav>
     <ul>
-        <!-- ✅ 로그인 안 된 상태 -->
-        <th:block sec:authorize="isAnonymous()">
+        <!-- ✅ 로그인 안 된 상태에서만 표시 -->
+        <th:block th:if="${username == null}">
             <li><a href="/users/register">회원가입</a></li>
             <li><a href="/users/login">로그인</a></li>
         </th:block>
 
-        <!-- ✅ 로그인 된 상태 -->
-        <th:block sec:authorize="isAuthenticated()">
-            <li>환영합니다, <span sec:authentication="name"></span>님!</li>
-            <li><a href="/logout">로그아웃</a></li>
+        <!-- ✅ 로그인 된 상태에서만 표시 -->
+        <th:block th:if="${username != null}">
+            <li>환영합니다, <span th:text="${username}"></span>님! (역할: <span th:text="${role}"></span>)</li>
+            <li>
+                <form action="/logout" method="post">
+                    <button type="submit">로그아웃</button>
+                </form>
+            </li>
         </th:block>
     </ul>
 </nav>

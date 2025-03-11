@@ -17,21 +17,20 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginPage() {
-        return "login";
+        return "login";  // templates/login.html 반환
     }
 
     @GetMapping("/register")
     public String showRegisterPage() {
-        return "register";
+        return "register";  // templates/register.html 반환
     }
 
-    // ✅ 회원가입 처리 추가 (POST 요청을 받도록 설정)
     @PostMapping("/register")
     public String registerUser(@RequestParam String username,
                                @RequestParam String password,
                                @RequestParam String name,
-                               @RequestParam Role role) { // ✅ role 추가
+                               @RequestParam Role role) {
         userService.registerUser(username, password, name, role);
-        return "redirect:/users/login"; // ✅ 회원가입 후 로그인 페이지로 이동
+        return "redirect:/users/login"; // 회원가입 후 로그인 페이지로 이동
     }
 }
