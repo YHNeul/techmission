@@ -2,12 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <title>매장 등록</title>
+    <meta charset="UTF-8">
 </head>
 <body>
-
 <h2>매장 등록</h2>
 
-<form action="/stores/register" method="post">
+<form th:action="@{/stores/register}" method="post">
+    <!-- ✅ 숨겨진 필드로 username과 role을 함께 전달 -->
+    <input type="hidden" name="username" th:value="${username}">
+    <input type="hidden" name="role" th:value="${role}">
+
     <label for="name">매장명:</label>
     <input type="text" id="name" name="name" required>
     <br>
