@@ -47,7 +47,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // CSRF 비활성화 (테스트용)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/users/register", "/users/login").permitAll()
+                        .requestMatchers("/", "/users/register", "/users/login", "/kiosk/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login

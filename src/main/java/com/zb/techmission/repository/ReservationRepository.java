@@ -16,4 +16,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     // 특정 매장, 날짜, 시간에 이미 예약이 있는지 확인하는 메서드
     boolean existsByStoreAndDateAndTime(Store store, LocalDate date, LocalTime time);
+
+    List<Reservation> findByStoreIdAndDateAndUserUsername(Long storeId, LocalDate date, String username);
 }

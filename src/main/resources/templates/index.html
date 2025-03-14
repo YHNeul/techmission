@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h2>🔍 디버깅 정보</h2>
+<h2>정보</h2>
 <p>현재 사용자: <span th:text="${username != null ? username : '익명 사용자'}"></span></p>
 <p>현재 역할: <span th:text="${role != null ? role : '없음'}"></span></p>
 
@@ -14,6 +14,7 @@
     <ul>
         <!-- ✅ 로그인 안 된 상태에서만 표시 -->
         <th:block th:if="${username == null}">
+            <a href="/kiosk" class="nav-link">키오스크 모드</a>
             <li><a href="/users/register">회원가입</a></li>
             <li><a href="/users/login">로그인</a></li>
         </th:block>
@@ -21,6 +22,7 @@
         <!-- ✅ 로그인 된 상태에서만 표시 -->
         <th:block th:if="${username != null}">
             <li>환영합니다, <span th:text="${username}"></span>님! (역할: <span th:text="${role}"></span>)</li>
+            <a href="/kiosk" class="nav-link">키오스크 모드</a>
             <li>
                 <form action="/logout" method="post">
                     <button type="submit">로그아웃</button>
