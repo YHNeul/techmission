@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <title>리뷰 작성</title>
+    <meta charset="UTF-8">
+    <style>
+        .nav-bar {
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .nav-bar a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .form-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 150px;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!-- 네비게이션 바 -->
+<div class="nav-bar">
+    <a th:href="@{/(username=${username},role=${role})}">홈</a>
+    <a th:href="@{/stores(username=${username},role=${role})}">매장 목록</a>
+    <a th:href="@{/reservations/my(username=${username},role=${role})}">내 예약</a>
+    <a th:href="@{/reviews/my(username=${username},role=${role})}">내 리뷰</a>
+    <a th:href="@{/logout}">로그아웃</a>
+</div>
+
+<div class="form-container">
+    <h2>리뷰 작성</h2>
+
+    <!-- 에러 메시지 표시 -->
+    <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+    <form th:action="@{/reviews/create}" method="post">
+        <!-- 숨겨진 필드들 -->
+        <input type="hidden" name="storeId" th:value="${storeId}">
+        <input type="hidden" name="username" th:value="${username}">
+        <input type="hidden" name="role" th:value="${role}">
+
+        <div class="form-group">
+            <label for="content">리뷰 내용:</label>
+            <textarea id="content" name="content" required
+                      placeholder="매장에 대한 솔직한 리뷰를 작성해주세요."></textarea>
+        </div>
+
+        <div class="button-container">
+            <button type="submit">등록하기</button>
+            <a th:href="@{/stores/{id}(id=${storeId},username=${username},role=${role})}">
+                <button type="button">취소</button>
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

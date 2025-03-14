@@ -18,4 +18,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     boolean existsByStoreAndDateAndTime(Store store, LocalDate date, LocalTime time);
 
     List<Reservation> findByStoreIdAndDateAndUserUsername(Long storeId, LocalDate date, String username);
+
+    // 방문 확인된 특정 매장, 특정 사용자의 예약 찾기
+    List<Reservation> findByStoreIdAndUserUsernameAndConfirmedTrue(Long storeId, String username);
 }

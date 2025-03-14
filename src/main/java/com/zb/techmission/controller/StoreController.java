@@ -1,8 +1,10 @@
 package com.zb.techmission.controller;
 
+import com.zb.techmission.entity.Review;
 import com.zb.techmission.entity.Role;
 import com.zb.techmission.entity.Store;
 import com.zb.techmission.entity.StoreUser;
+import com.zb.techmission.service.ReviewService;
 import com.zb.techmission.service.StoreService;
 import com.zb.techmission.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -17,10 +19,12 @@ import java.util.List;
 public class StoreController {
     private final StoreService storeService;
     private final UserService userService;
+    private final ReviewService reviewService;
 
-    public StoreController(StoreService storeService, UserService userService) {
+    public StoreController(StoreService storeService, UserService userService, ReviewService reviewService) {
         this.storeService = storeService;
         this.userService = userService;
+        this.reviewService = reviewService;
     }
 
     // ✅ 매장 목록 조회 (로그인한 사용자만 볼 수 있음)
@@ -67,7 +71,7 @@ public class StoreController {
         return "redirect:/stores?username=" + owner_id + "&role=ROLE_" + owner.getRole();
     }
 
-    // 매장 상세 조회
+    // ✅ 매장 상세 조회 (리뷰 포함)
     @GetMapping("/{id}")
     public String getStoreDetail(@PathVariable Long id,
                                  @RequestParam String username,
@@ -78,7 +82,11 @@ public class StoreController {
             return "redirect:/stores?username=" + username + "&role=" + role;
         }
 
+        // 매장 리뷰 목록 조회
+        List<Review> reviews = reviewService.getReviewsByStoreId(id);
+
         model.addAttribute("store", store);
+        model.addAttribute("reviews", reviews);
         model.addAttribute("username", username);
         model.addAttribute("role", role);
         return "store_detail";

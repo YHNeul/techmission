@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+  <title>내 리뷰 목록</title>
+  <meta charset="UTF-8">
+  <style>
+    .nav-bar {
+        background-color: #f8f9fa;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .nav-bar a {
+        margin-right: 15px;
+        text-decoration: none;
+    }
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .success-message {
+        color: green;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    .error-message {
+        color: red;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    .no-reviews {
+        margin: 20px 0;
+        font-style: italic;
+        color: #666;
+    }
+    .review-list {
+        margin-top: 20px;
+    }
+    .review-item {
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+    }
+    .review-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .review-store {
+        font-weight: bold;
+    }
+    .review-date {
+        color: #777;
+        font-size: 0.9em;
+    }
+    .review-content {
+        margin: 10px 0;
+    }
+    .review-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .review-actions form {
+        margin: 0;
+    }
+    button {
+        padding: 6px 12px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+    }
+    .btn-edit {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .btn-delete {
+        background-color: #f44336;
+        color: white;
+    }
+  </style>
+</head>
+<body>
+<!-- 네비게이션 바 -->
+<div class="nav-bar">
+  <a th:href="@{/(username=${username},role=${role})}">홈</a>
+  <a th:href="@{/stores(username=${username},role=${role})}">매장 목록</a>
+  <a th:href="@{/reservations/my(username=${username},role=${role})}">내 예약</a>
+  <a th:href="@{/reviews/my(username=${username},role=${role})}">내 리뷰</a>
+  <a th:href="@{/logout}">로그아웃</a>
+</div>
+
+<div class="container">
+  <h2>내 리뷰 목록</h2>
+
+  <!-- 성공/에러 메시지 표시 -->
+  <div th:if="${message}" class="success-message" th:text="${message}"></div>
+  <div th:if="${param.error}" class="error-message" th:text="${param.error}"></div>
+
+  <!-- 리뷰가 없는 경우 -->
+  <div th:if="${#lists.isEmpty(reviews)}" class="no-reviews">
+    <p>작성한 리뷰가 없습니다.</p>
+  </div>
+
+  <!-- 리뷰 목록 -->
+  <div th:if="${not #lists.isEmpty(reviews)}" class="review-list">
+    <div th:each="review : ${reviews}" class="review-item">
+      <div class="review-header">
+                    <span class="review-store">
+                        <a th:href="@{/stores/{id}(id=${review.store.id},username=${username},role=${role})}"
+                           th:text="${review.store.name}">매장명</a>
+                    </span>
+        <span class="review-date" th:text="${#temporals.format(review.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</span>
+      </div>
+      <div class="review-content" th:text="${review.content}">리뷰 내용</div>
+      <div class="review-actions">
+        <a th:href="@{/reviews/edit/{id}(id=${review.id},username=${username},role=${role})}">
+          <button class="btn-edit">수정</button>
+        </a>
+        <form th:action="@{/reviews/delete/{id}(id=${review.id})}" method="post">
+          <input type="hidden" name="username" th:value="${username}">
+          <input type="hidden" name="role" th:value="${role}">
+          <button type="submit" class="btn-delete"
+                  onclick="return confirm('정말로 이 리뷰를 삭제하시겠습니까?');">삭제</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
