@@ -8,9 +8,13 @@
 <h2>매장 등록</h2>
 
 <form th:action="@{/stores/register}" method="post">
-    <!-- ✅ 숨겨진 필드로 username과 role을 함께 전달 -->
-    <input type="hidden" name="username" th:value="${username}">
-    <input type="hidden" name="role" th:value="${role}">
+    <!-- ✅ 점주 정보 표시 (username을 읽기 전용으로 표시) -->
+    <label for="owner_id">점주:</label>
+    <input type="text" id="owner_id" name="owner_display" th:value="${username}" readonly>
+    <br>
+
+    <!-- ✅ 숨겨진 필드로 username을 owner_id로 전달 -->
+    <input type="hidden" name="owner_id" th:value="${username}">
 
     <label for="name">매장명:</label>
     <input type="text" id="name" name="name" required>
@@ -26,6 +30,10 @@
 
     <button type="submit">등록</button>
 </form>
+
+
+
+<p>현재 로그인 사용자: <span th:text="${username}"></span></p>
 
 </body>
 </html>

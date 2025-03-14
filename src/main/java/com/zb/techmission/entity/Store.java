@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "stores")
 public class Store {
@@ -21,16 +24,13 @@ public class Store {
     @Column(length = 500)
     private String description;
 
-    // ✅ StoreUser 객체로 변경 (점주 정보 저장)
+    // 관계 매핑
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @JoinColumn(name = "owner_id")
     private StoreUser owner;
 
-    public void setOwner(StoreUser owner) {
-        this.owner = owner;
-    }
+    // owner 컬럼을 직접 매핑하는 필드 추가
+    @Column(name = "owner", nullable = false)
+    private String ownerName;
 
-    public StoreUser getOwner() {
-        return owner;
-    }
 }

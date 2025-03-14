@@ -1,0 +1,288 @@
+2025-03-14T14:34:22.413+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@171802972 wrapping org.mariadb.jdbc.Connection@3fa1a7a5] read-only
+2025-03-14T14:34:22.418+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-03-14T14:34:22.419+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.h.e.t.internal.TransactionImpl         : begin
+2025-03-14T14:34:22.419+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.m.jdbc.client.impl.StandardClient      : execute query: set autocommit=0
+2025-03-14T14:34:22.419+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.mariadb.jdbc.message.server.OkPacket   : System variable change:  autocommit = OFF
+2025-03-14T14:34:22.419+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.s.orm.jpa.JpaTransactionManager        : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@309a2cbf]
+2025-03-14T14:34:22.420+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] org.hibernate.orm.sql.ast.create         : Created new SQL alias : s1_0
+2025-03-14T14:34:22.420+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] org.hibernate.orm.sql.ast.create         : Registration of TableGroup [StandardTableGroup(com.zb.techmission.entity.Store(56))] with identifierForTableGroup [com.zb.techmission.entity.Store] for NavigablePath [com.zb.techmission.entity.Store] 
+2025-03-14T14:34:22.421+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] org.hibernate.orm.sql.ast.create         : Registration of TableGroup [org.hibernate.sql.ast.tree.from.LazyTableGroup@12f5f88a] with identifierForTableGroup [com.zb.techmission.entity.Store(56).owner] for NavigablePath [com.zb.techmission.entity.Store(56).owner] 
+2025-03-14T14:34:22.421+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] org.hibernate.orm.results.graph.AST      : DomainResult Graph:
+ \-EntityResultImpl [com.zb.techmission.entity.Store(56)]
+ |  +-BasicFetch [com.zb.techmission.entity.Store(56).description]
+ |  +-BasicFetch [com.zb.techmission.entity.Store(56).location]
+ |  +-BasicFetch [com.zb.techmission.entity.Store(56).name]
+ |  +-EntityFetchSelectImpl [com.zb.techmission.entity.Store(56).owner]
+ |  \-BasicFetch [com.zb.techmission.entity.Store(56).ownerName]
+
+2025-03-14T14:34:22.421+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] org.hibernate.orm.sql.ast.tree           : SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (s1 : com.zb.techmission.entity.Store(56)) {
+          primaryTableReference : `stores` as s1_0
+          TableGroupJoins {
+            left  join LazyTableGroup (o1 : com.zb.techmission.entity.Store(56).owner) {
+            }
+          }
+        }
+      }
+    }
+
+2025-03-14T14:34:22.422+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] org.hibernate.orm.sql.exec               : Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-03-14T14:34:22.422+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] org.hibernate.SQL                        : 
+    /* <criteria> */ select
+        s1_0.`id`,
+        s1_0.`description`,
+        s1_0.`location`,
+        s1_0.`name`,
+        s1_0.`owner_id`,
+        s1_0.`owner` 
+    from
+        `stores` s1_0
+2025-03-14T14:34:22.423+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.m.jdbc.client.impl.StandardClient      : execute query: /* <criteria> */ select s1_0.`id`,s1_0.`description`,s1_0.`location`,s1_0.`name`,s1_0.`owner_id`,s1_0.`owner` from `stores` s1_0
+2025-03-14T14:34:22.424+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] org.hibernate.orm.results                : Initializer list:
+	  com.zb.techmission.entity.Store(56) -> EntityJoinedFetchInitializer(com.zb.techmission.entity.Store(56))@1490435735 (SingleTableEntityPersister(com.zb.techmission.entity.Store))
+	  com.zb.techmission.entity.Store(56).owner -> EntitySelectFetchInitializer(com.zb.techmission.entity.Store(56).owner)@1708829871 (ToOneAttributeMapping(NavigableRole[com.zb.techmission.entity.Store.owner])@1311610778)
+
+2025-03-14T14:34:22.425+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.s.orm.jpa.JpaTransactionManager        : Initiating transaction commit
+2025-03-14T14:34:22.425+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.s.orm.jpa.JpaTransactionManager        : Committing JPA transaction on EntityManager [SessionImpl(1385746537<open>)]
+2025-03-14T14:34:22.425+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.h.e.t.internal.TransactionImpl         : committing
+2025-03-14T14:34:22.426+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.m.jdbc.client.impl.StandardClient      : execute query: COMMIT
+2025-03-14T14:34:22.426+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.m.jdbc.client.impl.StandardClient      : execute query: set autocommit=1
+2025-03-14T14:34:22.426+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.mariadb.jdbc.message.server.OkPacket   : System variable change:  autocommit = ON
+2025-03-14T14:34:22.426+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@171802972 wrapping org.mariadb.jdbc.Connection@3fa1a7a5]
+2025-03-14T14:34:22.427+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.s.orm.jpa.JpaTransactionManager        : Not closing pre-bound JPA EntityManager after transaction
+2025-03-14T14:34:22.427+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-03-14T14:34:22.439+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.j.s.OpenEntityManagerInViewInterceptor : Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:34:22.439+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-14T14:34:26.392+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /stores/1?username=25&role=OWNER
+2025-03-14T14:34:26.393+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=25, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_OWNER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F2069CF65A9ADAB35F4B04A5E834123], Granted Authorities=[ROLE_OWNER]]]
+2025-03-14T14:34:26.393+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /stores/1?username=25&role=OWNER
+2025-03-14T14:34:26.393+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/stores/1?username=25&role=OWNER", parameters={masked}
+2025-03-14T14:34:26.394+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-03-14T14:34:26.394+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.j.s.OpenEntityManagerInViewInterceptor : Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:34:26.397+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] org.apache.catalina.webresources.Cache   : Increased cache size by [517] for item [org.apache.catalina.webresources.CachedResource@378ed318] at [/stores/1] making total cache size [2070]
+2025-03-14T14:34:26.397+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-03-14T14:34:26.403+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource stores/1.]
+2025-03-14T14:34:26.404+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.j.s.OpenEntityManagerInViewInterceptor : Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:34:26.404+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-03-14T14:34:26.406+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error?username=25&role=OWNER
+2025-03-14T14:34:26.406+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=25, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_OWNER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F2069CF65A9ADAB35F4B04A5E834123], Granted Authorities=[ROLE_OWNER]]]
+2025-03-14T14:34:26.406+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /error?username=25&role=OWNER
+2025-03-14T14:34:26.407+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error?username=25&role=OWNER", parameters={masked}
+2025-03-14T14:34:26.407+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2025-03-14T14:34:26.407+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.j.s.OpenEntityManagerInViewInterceptor : Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:34:26.413+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2025-03-14T14:34:26.413+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.j.s.OpenEntityManagerInViewInterceptor : Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:34:26.413+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-7] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2025-03-14T14:34:44.372+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:34:44.372+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:35:14.385+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:35:14.385+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:35:44.392+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:35:44.392+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:36:14.394+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:36:14.394+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:36:44.402+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:36:44.402+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:37:14.416+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:37:14.416+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:37:21.392+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2025-03-14T14:37:21.393+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /
+2025-03-14T14:37:21.393+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2025-03-14T14:37:21.393+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.zb.techmission.controller.HomeController#home(String, String, Model)
+2025-03-14T14:37:21.393+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] o.j.s.OpenEntityManagerInViewInterceptor : Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:37:21.394+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-03-14T14:37:21.398+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] o.j.s.OpenEntityManagerInViewInterceptor : Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:37:21.399+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-14T14:37:21.399+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=25, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_OWNER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F2069CF65A9ADAB35F4B04A5E834123], Granted Authorities=[ROLE_OWNER]]]
+2025-03-14T14:37:23.137+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /users/login
+2025-03-14T14:37:23.138+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /users/login
+2025-03-14T14:37:23.138+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/users/login", parameters={}
+2025-03-14T14:37:23.138+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.zb.techmission.controller.UserController#showLoginPage()
+2025-03-14T14:37:23.138+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] o.j.s.OpenEntityManagerInViewInterceptor : Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:37:23.139+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-03-14T14:37:23.141+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] o.j.s.OpenEntityManagerInViewInterceptor : Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:37:23.141+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-14T14:37:23.142+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=25, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_OWNER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5F2069CF65A9ADAB35F4B04A5E834123], Granted Authorities=[ROLE_OWNER]]]
+2025-03-14T14:37:25.105+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /users/login
+2025-03-14T14:37:25.105+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] tor$SharedEntityManagerInvocationHandler : Creating new EntityManager for shared EntityManager invocation
+2025-03-14T14:37:25.107+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] org.hibernate.orm.sql.ast.create         : Created new SQL alias : su1_0
+2025-03-14T14:37:25.107+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] org.hibernate.orm.sql.ast.create         : Registration of TableGroup [StandardTableGroup(com.zb.techmission.entity.StoreUser(46))] with identifierForTableGroup [com.zb.techmission.entity.StoreUser] for NavigablePath [com.zb.techmission.entity.StoreUser] 
+2025-03-14T14:37:25.107+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] o.h.q.sqm.sql.BaseSqmToSqlAstConverter   : Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@7751bf38
+2025-03-14T14:37:25.108+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] o.h.q.sqm.sql.BaseSqmToSqlAstConverter   : Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.zb.techmission.entity.StoreUser(46).username) 
+2025-03-14T14:37:25.108+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] org.hibernate.orm.results.graph.AST      : DomainResult Graph:
+ \-EntityResultImpl [com.zb.techmission.entity.StoreUser(46)]
+ |  +-BasicFetch [com.zb.techmission.entity.StoreUser(46).name]
+ |  +-BasicFetch [com.zb.techmission.entity.StoreUser(46).password]
+ |  +-BasicFetch [com.zb.techmission.entity.StoreUser(46).role]
+ |  \-BasicFetch [com.zb.techmission.entity.StoreUser(46).username]
+
+2025-03-14T14:37:25.108+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] org.hibernate.orm.sql.ast.tree           : SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (su1 : com.zb.techmission.entity.StoreUser(46)) {
+          primaryTableReference : `store_users` as su1_0
+        }
+      }
+    }
+
+2025-03-14T14:37:25.109+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] org.hibernate.orm.sql.exec               : Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-03-14T14:37:25.109+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] org.hibernate.SQL                        : 
+    /* <criteria> */ select
+        su1_0.`id`,
+        su1_0.`name`,
+        su1_0.`password`,
+        su1_0.`role`,
+        su1_0.`username` 
+    from
+        `store_users` su1_0 
+    where
+        su1_0.`username`=?
+2025-03-14T14:37:25.110+09:00 TRACE 868 --- [techmission] [http-nio-8081-exec-9] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [123]
+2025-03-14T14:37:25.111+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] o.m.jdbc.client.impl.StandardClient      : execute query: /* <criteria> */ select su1_0.`id`,su1_0.`name`,su1_0.`password`,su1_0.`role`,su1_0.`username` from `store_users` su1_0 where su1_0.`username`=?
+2025-03-14T14:37:25.111+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] org.hibernate.orm.results                : Initializer list:
+	  com.zb.techmission.entity.StoreUser(46) -> EntityJoinedFetchInitializer(com.zb.techmission.entity.StoreUser(46))@1630735109 (SingleTableEntityPersister(com.zb.techmission.entity.StoreUser))
+
+2025-03-14T14:37:25.200+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-03-14T14:37:25.200+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from 5FEFD338C503924B7AB8A6721E785C89
+2025-03-14T14:37:25.201+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=123, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5FEFD338C503924B7AB8A6721E785C89], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@51dab956]
+2025-03-14T14:37:25.201+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-9] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=123, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5FEFD338C503924B7AB8A6721E785C89], Granted Authorities=[ROLE_USER]]
+2025-03-14T14:37:25.205+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /?username=123&role=ROLE_USER
+2025-03-14T14:37:25.205+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /?username=123&role=ROLE_USER
+2025-03-14T14:37:25.206+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/?username=123&role=ROLE_USER", parameters={masked}
+2025-03-14T14:37:25.206+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.zb.techmission.controller.HomeController#home(String, String, Model)
+2025-03-14T14:37:25.206+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] o.j.s.OpenEntityManagerInViewInterceptor : Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:37:25.207+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-03-14T14:37:25.209+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] o.j.s.OpenEntityManagerInViewInterceptor : Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:37:25.209+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-14T14:37:25.210+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=123, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5FEFD338C503924B7AB8A6721E785C89], Granted Authorities=[ROLE_USER]]]
+2025-03-14T14:37:26.560+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /stores?username=123&role=ROLE_USER
+2025-03-14T14:37:26.561+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=123, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=5FEFD338C503924B7AB8A6721E785C89], Granted Authorities=[ROLE_USER]]]
+2025-03-14T14:37:26.561+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /stores?username=123&role=ROLE_USER
+2025-03-14T14:37:26.561+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/stores?username=123&role=ROLE_USER", parameters={masked}
+2025-03-14T14:37:26.561+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.zb.techmission.controller.StoreController#getAllStores(String, String, Model)
+2025-03-14T14:37:26.561+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.j.s.OpenEntityManagerInViewInterceptor : Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:37:26.562+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.ast.create         : Created new SQL alias : su1_0
+2025-03-14T14:37:26.563+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.ast.create         : Registration of TableGroup [StandardTableGroup(com.zb.techmission.entity.StoreUser(46))] with identifierForTableGroup [com.zb.techmission.entity.StoreUser] for NavigablePath [com.zb.techmission.entity.StoreUser] 
+2025-03-14T14:37:26.563+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.h.q.sqm.sql.BaseSqmToSqlAstConverter   : Determining mapping-model type for SqmParameter : org.hibernate.query.sqm.tree.expression.SqmJpaCriteriaParameterWrapper@5e72d42d
+2025-03-14T14:37:26.563+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.h.q.sqm.sql.BaseSqmToSqlAstConverter   : Determining mapping-model type for SqmPath : SqmBasicValuedSimplePath(com.zb.techmission.entity.StoreUser(46).username) 
+2025-03-14T14:37:26.564+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.results.graph.AST      : DomainResult Graph:
+ \-EntityResultImpl [com.zb.techmission.entity.StoreUser(46)]
+ |  +-BasicFetch [com.zb.techmission.entity.StoreUser(46).name]
+ |  +-BasicFetch [com.zb.techmission.entity.StoreUser(46).password]
+ |  +-BasicFetch [com.zb.techmission.entity.StoreUser(46).role]
+ |  \-BasicFetch [com.zb.techmission.entity.StoreUser(46).username]
+
+2025-03-14T14:37:26.565+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.ast.tree           : SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (su1 : com.zb.techmission.entity.StoreUser(46)) {
+          primaryTableReference : `store_users` as su1_0
+        }
+      }
+    }
+
+2025-03-14T14:37:26.565+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.exec               : Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-03-14T14:37:26.565+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    /* <criteria> */ select
+        su1_0.`id`,
+        su1_0.`name`,
+        su1_0.`password`,
+        su1_0.`role`,
+        su1_0.`username` 
+    from
+        `store_users` su1_0 
+    where
+        su1_0.`username`=?
+2025-03-14T14:37:26.566+09:00 TRACE 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.jdbc.bind              : binding parameter (1:VARCHAR) <- [123]
+2025-03-14T14:37:26.566+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.m.jdbc.client.impl.StandardClient      : execute query: /* <criteria> */ select su1_0.`id`,su1_0.`name`,su1_0.`password`,su1_0.`role`,su1_0.`username` from `store_users` su1_0 where su1_0.`username`=?
+2025-03-14T14:37:26.567+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.results                : Initializer list:
+	  com.zb.techmission.entity.StoreUser(46) -> EntityJoinedFetchInitializer(com.zb.techmission.entity.StoreUser(46))@760294937 (SingleTableEntityPersister(com.zb.techmission.entity.StoreUser))
+
+2025-03-14T14:37:26.568+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.orm.jpa.JpaTransactionManager        : Found thread-bound EntityManager [SessionImpl(933485798<open>)] for JPA transaction
+2025-03-14T14:37:26.569+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.orm.jpa.JpaTransactionManager        : Creating new transaction with name [org.springframework.data.jpa.repository.support.SimpleJpaRepository.findAll]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT,readOnly
+2025-03-14T14:37:26.569+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.jdbc.datasource.DataSourceUtils      : Setting JDBC Connection [HikariProxyConnection@221067500 wrapping org.mariadb.jdbc.Connection@3fa1a7a5] read-only
+2025-03-14T14:37:26.569+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.h.e.t.internal.TransactionImpl         : On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+2025-03-14T14:37:26.569+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.h.e.t.internal.TransactionImpl         : begin
+2025-03-14T14:37:26.569+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.m.jdbc.client.impl.StandardClient      : execute query: set autocommit=0
+2025-03-14T14:37:26.570+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.mariadb.jdbc.message.server.OkPacket   : System variable change:  autocommit = OFF
+2025-03-14T14:37:26.570+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.orm.jpa.JpaTransactionManager        : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@29a8feb6]
+2025-03-14T14:37:26.570+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.ast.create         : Created new SQL alias : s1_0
+2025-03-14T14:37:26.571+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.ast.create         : Registration of TableGroup [StandardTableGroup(com.zb.techmission.entity.Store(57))] with identifierForTableGroup [com.zb.techmission.entity.Store] for NavigablePath [com.zb.techmission.entity.Store] 
+2025-03-14T14:37:26.571+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.ast.create         : Registration of TableGroup [org.hibernate.sql.ast.tree.from.LazyTableGroup@4969bb3a] with identifierForTableGroup [com.zb.techmission.entity.Store(57).owner] for NavigablePath [com.zb.techmission.entity.Store(57).owner] 
+2025-03-14T14:37:26.571+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.results.graph.AST      : DomainResult Graph:
+ \-EntityResultImpl [com.zb.techmission.entity.Store(57)]
+ |  +-BasicFetch [com.zb.techmission.entity.Store(57).description]
+ |  +-BasicFetch [com.zb.techmission.entity.Store(57).location]
+ |  +-BasicFetch [com.zb.techmission.entity.Store(57).name]
+ |  +-EntityFetchSelectImpl [com.zb.techmission.entity.Store(57).owner]
+ |  \-BasicFetch [com.zb.techmission.entity.Store(57).ownerName]
+
+2025-03-14T14:37:26.572+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.ast.tree           : SQL AST Tree:
+    SelectStatement {
+      FromClause {
+        StandardTableGroup (s1 : com.zb.techmission.entity.Store(57)) {
+          primaryTableReference : `stores` as s1_0
+          TableGroupJoins {
+            left  join LazyTableGroup (o1 : com.zb.techmission.entity.Store(57).owner) {
+            }
+          }
+        }
+      }
+    }
+
+2025-03-14T14:37:26.572+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.exec               : Skipping reading Query result cache data: cache-enabled = false, cache-mode = NORMAL
+2025-03-14T14:37:26.572+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    /* <criteria> */ select
+        s1_0.`id`,
+        s1_0.`description`,
+        s1_0.`location`,
+        s1_0.`name`,
+        s1_0.`owner_id`,
+        s1_0.`owner` 
+    from
+        `stores` s1_0
+2025-03-14T14:37:26.573+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.m.jdbc.client.impl.StandardClient      : execute query: /* <criteria> */ select s1_0.`id`,s1_0.`description`,s1_0.`location`,s1_0.`name`,s1_0.`owner_id`,s1_0.`owner` from `stores` s1_0
+2025-03-14T14:37:26.574+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.results                : Initializer list:
+	  com.zb.techmission.entity.Store(57) -> EntityJoinedFetchInitializer(com.zb.techmission.entity.Store(57))@1034115850 (SingleTableEntityPersister(com.zb.techmission.entity.Store))
+	  com.zb.techmission.entity.Store(57).owner -> EntitySelectFetchInitializer(com.zb.techmission.entity.Store(57).owner)@957847535 (ToOneAttributeMapping(NavigableRole[com.zb.techmission.entity.Store.owner])@1311610778)
+
+2025-03-14T14:37:26.577+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.sql.exec               : Skipping reading Query result cache data: cache-enabled = false, cache-mode = IGNORE
+2025-03-14T14:37:26.578+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.SQL                        : 
+    select
+        su1_0.`id`,
+        su1_0.`name`,
+        su1_0.`password`,
+        su1_0.`role`,
+        su1_0.`username` 
+    from
+        `store_users` su1_0 
+    where
+        su1_0.`id`=?
+2025-03-14T14:37:26.579+09:00 TRACE 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.jdbc.bind              : binding parameter (1:BIGINT) <- [29]
+2025-03-14T14:37:26.579+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.m.jdbc.client.impl.StandardClient      : execute query: select su1_0.`id`,su1_0.`name`,su1_0.`password`,su1_0.`role`,su1_0.`username` from `store_users` su1_0 where su1_0.`id`=?
+2025-03-14T14:37:26.580+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] org.hibernate.orm.results                : Initializer list:
+	  com.zb.techmission.entity.StoreUser -> EntityJoinedFetchInitializer(com.zb.techmission.entity.StoreUser)@1694114862 (SingleTableEntityPersister(com.zb.techmission.entity.StoreUser))
+
+2025-03-14T14:37:26.591+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.orm.jpa.JpaTransactionManager        : Initiating transaction commit
+2025-03-14T14:37:26.592+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.orm.jpa.JpaTransactionManager        : Committing JPA transaction on EntityManager [SessionImpl(933485798<open>)]
+2025-03-14T14:37:26.592+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.h.e.t.internal.TransactionImpl         : committing
+2025-03-14T14:37:26.592+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.m.jdbc.client.impl.StandardClient      : execute query: COMMIT
+2025-03-14T14:37:26.592+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.m.jdbc.client.impl.StandardClient      : execute query: set autocommit=1
+2025-03-14T14:37:26.592+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.mariadb.jdbc.message.server.OkPacket   : System variable change:  autocommit = ON
+2025-03-14T14:37:26.593+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.jdbc.datasource.DataSourceUtils      : Resetting read-only flag of JDBC Connection [HikariProxyConnection@221067500 wrapping org.mariadb.jdbc.Connection@3fa1a7a5]
+2025-03-14T14:37:26.593+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.orm.jpa.JpaTransactionManager        : Not closing pre-bound JPA EntityManager after transaction
+2025-03-14T14:37:26.593+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+2025-03-14T14:37:26.597+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.j.s.OpenEntityManagerInViewInterceptor : Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2025-03-14T14:37:26.598+09:00 DEBUG 868 --- [techmission] [http-nio-8081-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-14T14:37:44.425+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:37:44.425+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:38:14.432+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:38:14.432+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:38:44.443+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:38:44.443+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:39:14.459+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:39:14.459+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.
+2025-03-14T14:39:44.460+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2025-03-14T14:39:44.460+09:00 DEBUG 868 --- [techmission] [HikariPool-9 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Fill pool skipped, pool has sufficient level or currently being filled.

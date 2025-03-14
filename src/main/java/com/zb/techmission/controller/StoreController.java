@@ -42,31 +42,33 @@ public class StoreController {
 
     // ✅ 매장 등록 페이지 (파트너만 접근 가능)
     @GetMapping("/register")
-    public String showStoreRegisterPage(@RequestParam String username, @RequestParam String role, Model model) {
-        // 🔥 ROLE_ 접두사 제거 후 검사
-        String roleWithoutPrefix = role.replace("ROLE_", "");
+    public String showStoreRegisterPage(@RequestParam String username, Model model) {
+        StoreUser user = userService.getUserByUsername(username);
 
-        if (!roleWithoutPrefix.equals("OWNER")) {
-            return "redirect:/stores?username=" + username + "&role=" + roleWithoutPrefix;
+        if (!user.getRole().equals(Role.OWNER)) {
+            return "redirect:/stores?username=" + username;
         }
 
         model.addAttribute("username", username);
-        model.addAttribute("role", roleWithoutPrefix);
         model.addAttribute("store", new Store());
         return "store_register";
     }
 
-    // ✅ 매장 등록 (파트너만 가능)
+    // ✅ 매장 등록 처리 (owner_id 설정)
     @PostMapping("/register")
-    public String addStore(@ModelAttribute Store store, @RequestParam String username, @RequestParam String role) {
-        // 🔥 ROLE_ 접두사 제거 후 검사
-        String roleWithoutPrefix = role.replace("ROLE_", "");
-
-        if (!roleWithoutPrefix.equals("OWNER")) {
-            return "redirect:/stores?username=" + username + "&role=" + roleWithoutPrefix;
+    public String addStore(@ModelAttribute Store store, @RequestParam String owner_id) {
+        StoreUser owner = userService.getUserByUsername(owner_id);
+        if (owner == null) {
+            throw new IllegalArgumentException("사용자를 찾을 수 없습니다: " + owner_id);
         }
-
-        storeService.addStore(store, username);
-        return "redirect:/stores?username=" + username + "&role=" + roleWithoutPrefix;
+        store.setOwner(owner);  // owner_id 관계 설정
+        store.setOwnerName(owner.getUsername());  // owner 컬럼에 사용자 이름 설정
+        storeService.addStore(store);
+        return "redirect:/stores?username=" + owner_id + "&role=ROLE_" + owner.getRole();
     }
+
+
+
+
+
 }
