@@ -67,6 +67,23 @@ public class StoreController {
         return "redirect:/stores?username=" + owner_id + "&role=ROLE_" + owner.getRole();
     }
 
+    // 매장 상세 조회
+    @GetMapping("/{id}")
+    public String getStoreDetail(@PathVariable Long id,
+                                 @RequestParam String username,
+                                 @RequestParam String role,
+                                 Model model) {
+        Store store = storeService.getStoreById(id);
+        if (store == null) {
+            return "redirect:/stores?username=" + username + "&role=" + role;
+        }
+
+        model.addAttribute("store", store);
+        model.addAttribute("username", username);
+        model.addAttribute("role", role);
+        return "store_detail";
+    }
+
 
 
 

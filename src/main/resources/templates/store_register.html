@@ -3,37 +3,69 @@
 <head>
     <title>매장 등록</title>
     <meta charset="UTF-8">
+    <style>
+        .nav-bar {
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .nav-bar a {
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
+<!-- 네비게이션 바 -->
+<div class="nav-bar">
+    <a th:href="@{/(username=${username},role=${role})}">홈</a>
+    <a th:href="@{/stores(username=${username},role=${role})}">매장 목록</a>
+    <a th:href="@{/logout}">로그아웃</a>
+</div>
+
 <h2>매장 등록</h2>
 
 <form th:action="@{/stores/register}" method="post">
-    <!-- ✅ 점주 정보 표시 (username을 읽기 전용으로 표시) -->
-    <label for="owner_id">점주:</label>
-    <input type="text" id="owner_id" name="owner_display" th:value="${username}" readonly>
-    <br>
+    <!-- 점주 정보 표시 (username을 읽기 전용으로 표시) -->
+    <div class="form-group">
+        <label for="owner_id">점주:</label>
+        <input type="text" id="owner_id" name="owner_display" th:value="${username}" readonly>
+    </div>
 
-    <!-- ✅ 숨겨진 필드로 username을 owner_id로 전달 -->
+    <!-- 숨겨진 필드로 username을 owner_id로 전달 -->
     <input type="hidden" name="owner_id" th:value="${username}">
 
-    <label for="name">매장명:</label>
-    <input type="text" id="name" name="name" required>
-    <br>
+    <div class="form-group">
+        <label for="name">매장명:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
 
-    <label for="location">위치:</label>
-    <input type="text" id="location" name="location" required>
-    <br>
+    <div class="form-group">
+        <label for="location">위치:</label>
+        <input type="text" id="location" name="location" required>
+    </div>
 
-    <label for="description">설명:</label>
-    <textarea id="description" name="description"></textarea>
-    <br>
+    <div class="form-group">
+        <label for="description">설명:</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+    </div>
 
     <button type="submit">등록</button>
 </form>
 
-
-
-<p>현재 로그인 사용자: <span th:text="${username}"></span></p>
-
+<div style="margin-top: 20px;">
+    <p>현재 로그인 사용자: <span th:text="${username}"></span></p>
+</div>
 </body>
 </html>

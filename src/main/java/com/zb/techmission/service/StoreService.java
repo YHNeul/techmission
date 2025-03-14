@@ -35,6 +35,10 @@ public class StoreService {
         return storeRepository.save(store);
     }
 
+    public Store getStoreById(Long id) {
+        return storeRepository.findById(id).orElse(null);
+    }
+
 
 
 
