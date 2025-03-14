@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+  <title>내 예약 목록</title>
+  <meta charset="UTF-8">
+  <style>
+    .nav-bar {
+        background-color: #f8f9fa;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .nav-bar a {
+        margin-right: 15px;
+        text-decoration: none;
+    }
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .reservation-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .reservation-table th, .reservation-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    .reservation-table th {
+        background-color: #f1f1f1;
+    }
+    .success-message {
+        color: green;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    .error-message {
+        color: red;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    .no-reservations {
+        margin: 20px 0;
+        font-style: italic;
+        color: #666;
+    }
+  </style>
+</head>
+<body>
+<!-- 네비게이션 바 -->
+<div class="nav-bar">
+  <a th:href="@{/(username=${username},role=${role})}">홈</a>
+  <a th:href="@{/stores(username=${username},role=${role})}">매장 목록</a>
+  <a th:href="@{/reservations/my(username=${username},role=${role})}">내 예약</a>
+  <a th:href="@{/logout}">로그아웃</a>
+</div>
+
+<div class="container">
+  <h2>내 예약 목록</h2>
+
+  <!-- 성공/에러 메시지 표시 -->
+  <div th:if="${message}" class="success-message" th:text="${message}"></div>
+  <div th:if="${param.error}" class="error-message" th:text="${param.error}"></div>
+
+  <!-- 예약이 없는 경우 -->
+  <div th:if="${#lists.isEmpty(reservations)}" class="no-reservations">
+    <p>예약 내역이 없습니다.</p>
+  </div>
+
+  <!-- 예약 목록 테이블 -->
+  <table th:if="${not #lists.isEmpty(reservations)}" class="reservation-table">
+    <thead>
+    <tr>
+      <th>매장명</th>
+      <th>위치</th>
+      <th>예약 날짜</th>
+      <th>예약 시간</th>
+      <th>예약 상태</th>
+      <th>예약 취소</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations}">
+      <td th:text="${reservation.store.name}"></td>
+      <td th:text="${reservation.store.location}"></td>
+      <td th:text="${#temporals.format(reservation.date, 'yyyy-MM-dd')}"></td>
+      <td th:text="${#temporals.format(reservation.time, 'HH:mm')}"></td>
+      <td th:text="${reservation.confirmed ? '방문 확인' : '예약 완료'}"></td>
+      <td>
+        <form th:action="@{/reservations/cancel/{id}(id=${reservation.id})}" method="post">
+          <input type="hidden" name="username" th:value="${username}">
+          <input type="hidden" name="role" th:value="${role}">
+          <button type="submit"
+                  onclick="return confirm('정말로 예약을 취소하시겠습니까?');">예약 취소</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 20px;">
+    <a th:href="@{/stores(username=${username},role=${role})}">
+      <button>매장 목록으로</button>
+    </a>
+  </div>
+</div>
+</body>
+</html>

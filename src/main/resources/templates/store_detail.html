@@ -30,6 +30,25 @@
         .detail-table td {
             padding: 10px;
         }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -37,11 +56,16 @@
 <div class="nav-bar">
     <a th:href="@{/(username=${username},role=${role})}">홈</a>
     <a th:href="@{/stores(username=${username},role=${role})}">매장 목록</a>
+    <a th:if="${role == 'USER'}" th:href="@{/reservations/my(username=${username},role=${role})}">내 예약</a>
     <a th:href="@{/logout}">로그아웃</a>
 </div>
 
 <div class="detail-container">
     <h2>매장 상세 정보</h2>
+
+    <!-- 성공/에러 메시지 표시 -->
+    <div th:if="${message}" class="success-message" th:text="${message}"></div>
+    <div th:if="${error}" class="error-message" th:text="${error}"></div>
 
     <table class="detail-table" border="1">
         <tr>
@@ -62,8 +86,20 @@
         </tr>
     </table>
 
-    <div style="margin-top: 20px;">
-        <a th:href="@{/stores(username=${username}, role=${role})}">
+    <div class="button-container">
+        <!-- USER 역할인 경우 예약 버튼 표시 -->
+        <a th:if="${role == 'USER'}" th:href="@{/reservations/create(storeId=${store.id},username=${username},role=${role})}">
+            <button>예약하기</button>
+        </a>
+
+        <!-- OWNER 역할이고 현재 매장의 점주인 경우 예약 목록 버튼 표시 -->
+        <a th:if="${role == 'OWNER' && store.owner.username == username}"
+           th:href="@{/reservations/store/{id}(id=${store.id},username=${username},role=${role})}">
+            <button>예약 목록 보기</button>
+        </a>
+
+        <!-- 매장 목록으로 돌아가기 버튼 -->
+        <a th:href="@{/stores(username=${username},role=${role})}">
             <button>매장 목록으로 돌아가기</button>
         </a>
     </div>
